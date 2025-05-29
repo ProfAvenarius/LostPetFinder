@@ -1,3 +1,7 @@
+//Author: DC Elliott
+//Description: Makes a Pet object.
+//Date: May 28/2025
+
 package com.dce;
 
 public class Pet {
