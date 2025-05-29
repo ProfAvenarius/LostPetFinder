@@ -1,5 +1,7 @@
+package com.dce;
+
 public class Pet {
-    private int petId
+    private int petId;
     private String name;
     private String type;
     private String breed;
@@ -9,7 +11,7 @@ public class Pet {
     private String status;
     private String lastSeen;
 
-    public Book(int petId, String name, String type, String breed, String colour, String size, String notes, String status, String lastSeen) {
+    public Pet(int petId, String name, String type, String breed, String colour, String size, String notes, String status, String lastSeen) {
         this.petId = petId;
         this.name = name;
         this.type = type;
@@ -95,7 +97,7 @@ public class Pet {
 
     @Override
     public String toString() {
-        return "Pet{" +
+        return "com.dce.Pet{" +
                 "petId=" + petId +
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
@@ -108,5 +110,3 @@ public class Pet {
                 '}' ;
     }
 }
-
-
