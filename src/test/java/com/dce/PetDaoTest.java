@@ -1,11 +1,13 @@
 package com.dce;
 
 
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class PetDaoTest {
@@ -28,4 +30,26 @@ public class PetDaoTest {
 
     }
 
+    @Test
+    public void testGetPetByIdReturnsPet() {
+        Document fakePet = new Document("petId", 111)
+                .append("name", "MockLostDog")
+                .append("type", "MockDog")
+                .append("breed", "MockBreed")
+                .append("colour", "MockColour")
+                .append("size", "MockSize")
+                .append("notes", "MockNotes")
+                .append("status", "Lost")
+                .append("lastSeen", "MockLocation");
+
+        FindIterable<Document> mockFindIterable = mock(FindIterable.class);
+        when(mockCollection.find(any(Document.class))).thenReturn(mockFindIterable);
+        when(mockFindIterable.first()).thenReturn(fakePet);
+
+        Pet result = petDao.getPetById(111);
+
+        assertNotNull(result);
+        assertEquals("MockLostDog", result.getName());
+        assertEquals("Lost",result.getStatus());
+    }
 }

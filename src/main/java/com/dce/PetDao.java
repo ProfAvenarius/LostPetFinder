@@ -30,4 +30,24 @@ public class PetDao {
                 .append("lastSeen", pet.getLastSeen());
         petCollection.insertOne(doc);
     }
+
+    public Pet getPetById(int id) {
+        Document query = new Document("petId", id);
+        Document result = petCollection.find(query).first();
+        if (result == null) {
+            return null;
+        }else {
+            return new Pet(
+                    result.getInteger("petId"),
+                    result.getString("name"),
+                    result.getString("type"),
+                    result.getString("breed"),
+                    result.getString("colour"),
+                    result.getString("size"),
+                    result.getString("notes"),
+                    result.getString("status"),
+                    result.getString("lastSeen")
+            );
+        }
+    }
 }
