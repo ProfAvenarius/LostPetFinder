@@ -4,6 +4,9 @@ import com.mongodb.client.*;
 
 import org.bson.Document; //Using BSON to align with MongoDB
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class PetDao {
     private final MongoCollection<Document> petCollection;
@@ -50,4 +53,27 @@ public class PetDao {
             );
         }
     }
+
+    public List<Pet> getAllPets() {
+        List<Pet> pets = new ArrayList<>();
+        for (Document doc : petCollection.find()) {
+            Pet pet = new Pet(
+                    doc.getInteger("petId"),
+                    doc.getString("name"),
+                    doc.getString("type"),
+                    doc.getString("breed"),
+                    doc.getString("colour"),
+                    doc.getString("size"),
+                    doc.getString("notes"),
+                    doc.getString("status"),
+                    doc.getString("lastSeen")
+            );
+            pets.add(pet);
+        }
+        return pets;
+    }
+    
+
+
+
 }

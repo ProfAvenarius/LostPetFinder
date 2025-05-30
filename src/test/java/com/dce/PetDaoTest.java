@@ -1,13 +1,17 @@
 package com.dce;
 
 
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
+import com.mongodb.client.*;
 import org.bson.Document;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.*;
+import javax.print.Doc;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*; //Discovered the beauty of static import to reduce repetition
 import static org.mockito.Mockito.*;
 
 public class PetDaoTest {
@@ -51,5 +55,43 @@ public class PetDaoTest {
         assertNotNull(result);
         assertEquals("MockLostDog", result.getName());
         assertEquals("Lost",result.getStatus());
+    }
+
+    @Test
+    public void testGetAllPetsReturnsList() {
+        Document fakePet1 = new Document("petId", 111)
+                .append("name", "MockDog1")
+                .append("type", "Dog")
+                .append("breed", "MockBreed1")
+                .append("colour", "Brown")
+                .append("size", "Small")
+                .append("notes", "MockNotes1")
+                .append("status", "Lost")
+                .append("lastSeen", "MockLocation1");
+
+        Document fakePet2 = new Document("petId", 222)
+                .append("name", "MockCat1")
+                .append("type", "Cat")
+                .append("breed", "MockBreed2")
+                .append("colour", "Black")
+                .append("size", "Medium")
+                .append("notes", "MockNotes2")
+                .append("status", "Found")
+                .append("lastSeen", "MockLocation2");
+
+        MongoCursor<Document> mockCursor = mock(MongoCursor.class);
+        when(mockCursor.hasNext()).thenReturn(true, true, false);
+        when(mockCursor.next()).thenReturn(fakePet1, fakePet2);
+
+        FindIterable<Document> mockFindIterable = mock(FindIterable.class);
+        when(mockFindIterable.iterator()).thenReturn(mockCursor);
+        when(mockCollection.find()).thenReturn(mockFindIterable);
+
+        List<Pet> result = petDao.getAllPets();
+
+        assertNotNull(result);
+        assertEquals(2,result.size());
+        assertEquals("MockDog1", result.get(0).getName());
+
     }
 }
