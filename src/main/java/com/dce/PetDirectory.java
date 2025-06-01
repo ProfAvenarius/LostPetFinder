@@ -63,7 +63,19 @@ public class PetDirectory {
     }
 
     private void updatePetField() {
+        try {
+            System.out.print("Pet ID to update: ");
+            int id = Integer.parseInt(scanner.nextLine());
+            System.out.print("Field to update (e.g., status, notes): ");
+            String field = scanner.nextLine();
+            System.out.print("New value: ");
+            String value = scanner.nextLine();
 
+            String result = petDao.updatePetField(id, field, value);
+            System.out.println(result);
+        } catch (Exception e) {
+            System.out.println("Error updating pet: " + e.getMessage());
+        }
     }
 
     private void deletePet() {
