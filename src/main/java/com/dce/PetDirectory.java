@@ -79,7 +79,14 @@ public class PetDirectory {
     }
 
     private void deletePet() {
-
+        try {
+            System.out.print("Pet ID to delete: ");
+            int id = Integer.parseInt(scanner.nextLine());
+            String result = petDao.deletePetById(id);
+            System.out.println(result);
+        } catch (Exception e) {
+            System.out.println("Error deleting pet: " + e.getMessage());
+        }
     }
 
     private void viewAllPets() {
