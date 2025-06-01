@@ -90,6 +90,12 @@ public class PetDirectory {
     }
 
     private void viewAllPets() {
-
+        List<Pet> pets = petDao.getAllPets();
+        if (pets.isEmpty()) {
+            System.out.println("No pets found in the database.");
+        } else {
+            pets.forEach(System.out::println);
+        }
+    }
 }
 
