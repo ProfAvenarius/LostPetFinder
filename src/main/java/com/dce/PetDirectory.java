@@ -33,7 +33,33 @@ public class PetDirectory {
     }
 
     private void addPet() {
+        try {
+            System.out.print("Pet ID: ");
+            int petId = Integer.parseInt(scanner.nextLine());
 
+            System.out.print("Name: ");
+            String name = scanner.nextLine();
+            System.out.print("Type: ");
+            String type = scanner.nextLine();
+            System.out.print("Breed: ");
+            String breed = scanner.nextLine();
+            System.out.print("Colour: ");
+            String colour = scanner.nextLine();
+            System.out.print("Size: ");
+            String size = scanner.nextLine();
+            System.out.print("Notes: ");
+            String notes = scanner.nextLine();
+            System.out.print("Status (Lost/Found): ");
+            String status = scanner.nextLine();
+            System.out.print("Last Seen Location: ");
+            String lastSeen = scanner.nextLine();
+
+            Pet pet = new Pet(petId, name, type, breed, colour, size, notes, status, lastSeen);
+            petDao.addPet(pet);
+            System.out.println("Pet added successfully.");
+        } catch (Exception e) {
+            System.out.println("Error adding pet: " + e.getMessage());
+        }
     }
 
     private void updatePetField() {
