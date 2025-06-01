@@ -2,6 +2,7 @@ package com.dce;
 
 import com.mongodb.client.*;
 
+import com.mongodb.client.result.*;
 import org.bson.Document; //Using BSON to align with MongoDB
 
 import java.util.ArrayList;
@@ -71,6 +72,33 @@ public class PetDao {
             pets.add(pet);
         }
         return pets;
+    }
+    public String updatePetField(int petId, String fieldName, String newValue) {
+        List<String> validFields = List.of("name", "type", "breed", "colour", "size", "notes", "status", "lastSeen");
+
+        if (!validFields.contains(fieldName)) {
+            return "Invalid field name.";
+        }
+        Document petToUpdate = new Document("petId", petId);
+        Document fieldToUpdate = new Document("$set", new Document(fieldName, newValue));
+        UpdateResult result = petCollection.updateOne(petToUpdate, fieldToUpdate);
+
+        if (result.getMatchedCount() == 0) {
+            return "Pet not found.";
+        }
+
+        return "Update successful.";
+    }
+
+    public String deletePetById(int id) {
+        Document query = new Document("petId", id);
+        DeleteResult result = petCollection.deleteOne(query);
+
+        if (result.getDeletedCount() == 0) {
+            return "Pet not found.";
+        }
+
+        return "Pet deleted successfully.";
     }
 
 
