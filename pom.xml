@@ -13,6 +13,7 @@
         <maven.compiler.target>17</maven.compiler.target>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     </properties>
 
     <dependencies>
@@ -35,6 +36,18 @@
             <artifactId>mockito-core</artifactId>
             <version>4.0.0</version>
             <scope>test</scope>
+        </dependency>
+
+
+<!--        Output in consol had following warning:-->
+<!--          com.mongodb.internal.diagnostics.logging.Loggers shouldUseSLF4J-->
+<!--          WARNING: SLF4J not found on the classpath.  Logging is disabled for the 'org.mongodb.driver' component.-->
+<!--        Solution advised was to include following dependency.-->
+<!--        This was found on https://www.slf4j.org/manual.html-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.17</version>
         </dependency>
 
     </dependencies>
