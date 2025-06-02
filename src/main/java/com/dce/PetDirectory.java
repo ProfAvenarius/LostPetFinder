@@ -7,6 +7,7 @@ public class PetDirectory {
     private final PetDao petDao;
     private final Scanner scanner;
 
+
     public PetDirectory() {
         this.petDao = new PetDao();
         this.scanner = new Scanner(System.in);
@@ -19,6 +20,7 @@ public class PetDirectory {
     }
 
     public void start() {
+
         while (true) {
             System.out.println("\n=== Lost Pet Directory ===");
             System.out.println("1. Add Pet");

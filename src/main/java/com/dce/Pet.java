@@ -101,16 +101,9 @@ public class Pet {
 
     @Override
     public String toString() {
-        return "com.dce.Pet{" +
-                "petId=" + petId +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", breed='" + breed + '\'' +
-                ", colour='" + colour + '\'' +
-                ", size='" + size + '\'' +
-                ", notes='" + notes + '\'' +
-                ", status='" + status + '\'' +
-                ", lastSeen='" + lastSeen + '\'' +
-                '}' ;
+        return String.format(
+                "Pet ID: %d | Name: %s | Type: %s | Breed: %s | Colour: %s | Size: %s | Notes: %s | Status: %s | Last Seen: %s",
+                petId, name, type, breed, colour, size, notes, status, lastSeen
+        );
     }
 }
