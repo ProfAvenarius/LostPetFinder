@@ -1,3 +1,7 @@
+//Author: DC Elliott
+//Description: Gives all the logic to interact with MongoDB
+//Date: May 30/2025
+
 package com.dce;
 
 import com.mongodb.client.*;

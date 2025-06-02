@@ -1,4 +1,35 @@
+<H1>QAP1 - SDAT/DEVOPS
+PROJECT: LOSTPETFINDER
+AUTHOR: DC ELLIOTT SD-12
+DATE: 06/01/2025
+<H1/>
+This project is the first version of a lost pet database.
+The program allows for records of lost pets to be stored and accessed by users.
 
+This program runs in a Terminal from Command line prompts.
+All data is persistent and saved to a MongoDB database.
+
+See DatabaseConnection.java to set any MongoDB parameters.
+Current parameters are:
+CONNECTION_STRING = "mongodb://localhost:27017"; 
+DATABASE_NAME = "LostPetDB";
+
+<H2> Examples of  Clean Code practice </H2>
+See screenshots in directory 'Screenshots'.
+
+Example 1. Began with methods affecting output directly in Main, moved all logic in to 
+PetDirectory and left Main only for calling this class. Short and Sweet.
+
+Example2. Only after encountering issues with mocking a final class (Scanner)
+in PetDirectoryTest did the mocking have to be simulated in each test. On review
+it was determined the @BeforeEach had become redundant and was removed.
+
+Example3. All naming - from classes to methods - is symmetrical in that it mirrors main and tests. All names
+were edited for consistency across classes.
+
+All dependencies can from class examples involving mocking except slf4j which came from reading documentation about a warning.
+
+The largest issues came from integrating MongoDB into a Java Maven project with mocking.
 
 
 <H2> Functionalities to add: </H2>

@@ -14,9 +14,10 @@ public class PetDirectoryTest {
     private Scanner mockScanner;
     private PetDirectory directory;
 
+
     @Test
     public void testUpdatePetField_Success() {
-        // Simulate user input as Scanner being a final class cound not be fully mocked.
+        // Simulate user input as Scanner being a final class could not be fully mocked.
         String simulatedInput = String.join("\n", "1234", "status", "Found");
         Scanner scanner = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
 
