@@ -1,3 +1,7 @@
+//Author: DC Elliott
+//Description: Contains all the logic for the cli interface
+//Date: June 1/2025
+
 package com.dce;
 
 import java.util.List;
