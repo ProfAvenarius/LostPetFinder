@@ -4,8 +4,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PetDirectory {
-    private final PetDao petDao = new PetDao();
-    private final Scanner scanner = new Scanner(System.in);
+    private final PetDao petDao;
+    private final Scanner scanner;
+
+    public PetDirectory() {
+        this.petDao = new PetDao();
+        this.scanner = new Scanner(System.in);
+    }
+
+    // Test constructor substituting mock data
+    public PetDirectory(PetDao petDao, Scanner scanner) {
+        this.petDao = petDao;
+        this.scanner = scanner;
+    }
 
     public void start() {
         while (true) {
@@ -32,7 +43,7 @@ public class PetDirectory {
         }
     }
 
-    private void addPet() {
+    public void addPet() {
         try {
             System.out.print("Pet ID: ");
             int petId = Integer.parseInt(scanner.nextLine());
@@ -62,7 +73,7 @@ public class PetDirectory {
         }
     }
 
-    private void updatePetField() {
+    public void updatePetField() {
         try {
             System.out.print("Pet ID to update: ");
             int id = Integer.parseInt(scanner.nextLine());
@@ -78,7 +89,7 @@ public class PetDirectory {
         }
     }
 
-    private void deletePet() {
+    public void deletePet() {
         try {
             System.out.print("Pet ID to delete: ");
             int id = Integer.parseInt(scanner.nextLine());
@@ -89,7 +100,7 @@ public class PetDirectory {
         }
     }
 
-    private void viewAllPets() {
+    public void viewAllPets() {
         List<Pet> pets = petDao.getAllPets();
         if (pets.isEmpty()) {
             System.out.println("No pets found in the database.");
